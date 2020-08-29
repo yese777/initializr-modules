@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>initializr-framework</module>
+        <module>initializr-system</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.9.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.yese</groupId>
+    <artifactId>initializr-modules</artifactId>
+    <version>0.0.1</version>
+    <name>initializr-modules</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <system.version>0.0.1</system.version>
+        <java.version>1.8</java.version>
+        <swagger.version>2.9.2</swagger.version>
+        <knife4j.version>2.0.4</knife4j.version>
+        <hutool.version>5.4.0</hutool.version>
+        <fastjson.version>1.2.73</fastjson.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <druid.version>1.1.23</druid.version>
+    </properties>
+
+    <!--依赖的版本号集中管理,真正引入依赖还是需要在子模块的pom里面添加坐标-->
+    <dependencyManagement>
+        <dependencies>
+            <!--基础框架-->
+            <dependency>
+                <groupId>com.yese</groupId>
+                <artifactId>initializr-framework</artifactId>
+                <version>${system.version}</version>
+            </dependency>
+
+
+            <!--swagger:在线接口文档生成工具-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!--swagger的官方ui界面,默认地址:http://${host}:${port}/swagger-ui.html -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!--swagger-bootstrap-ui的升级版:更符合国人使用习惯的ui界面.https://doc.xiaominfo.com/, 默认地址:http://${host}:${port}/doc.html -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <!--hutool工具包,https://www.hutool.cn/ -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!--json工具-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--mybatis增强工具:mybatis-plus,https://mp.baomidou.com/ -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--数据库连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--Druid管理后台-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+</project>

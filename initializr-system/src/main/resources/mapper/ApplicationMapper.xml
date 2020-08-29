@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yese.mapper.ApplicationMapper">
+    <sql id="Base_Column_List">
+        id,
+        icon,
+        imgUrls,
+        name,
+        remark,
+        visit_num,
+        collection_num,
+        webapp_url,
+        user_code,
+        deleted,
+        update_time,
+        create_time,
+        status,
+        top,
+        update_top_time,
+        mobile,
+        office_name,
+        creator_name,
+        develop_mobile,
+        develop_company,
+        develop_name,
+        use_range,
+        develop_language,
+        provide_api,
+        invoke_api,
+        invoke_service,
+        videoUrl
+        <!--删除最后一个,-->
+    </sql>
+    <resultMap type="com.yese.entity.Application" id="ApplicationBaseResultMap">
+        <result property="id" column="id"/>
+        <result property="icon" column="icon"/>
+        <result property="imgurls" column="imgUrls"/>
+        <result property="name" column="name"/>
+        <result property="remark" column="remark"/>
+        <result property="visitNum" column="visit_num"/>
+        <result property="collectionNum" column="collection_num"/>
+        <result property="webappUrl" column="webapp_url"/>
+        <result property="userCode" column="user_code"/>
+        <result property="deleted" column="deleted"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="status" column="status"/>
+        <result property="top" column="top"/>
+        <result property="updateTopTime" column="update_top_time"/>
+        <result property="mobile" column="mobile"/>
+        <result property="officeName" column="office_name"/>
+        <result property="creatorName" column="creator_name"/>
+        <result property="developMobile" column="develop_mobile"/>
+        <result property="developCompany" column="develop_company"/>
+        <result property="developName" column="develop_name"/>
+        <result property="useRange" column="use_range"/>
+        <result property="developLanguage" column="develop_language"/>
+        <result property="provideApi" column="provide_api"/>
+        <result property="invokeApi" column="invoke_api"/>
+        <result property="invokeService" column="invoke_service"/>
+        <result property="videourl" column="videoUrl"/>
+    </resultMap>
+</mapper>
