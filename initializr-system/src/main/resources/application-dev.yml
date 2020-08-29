@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://119.3.229.77:3307/app?useUnicode=true&useSSL=false&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://47.100.230.188:3306/initializr-modules?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: haizhi2018
+    password: 123456
     # 修改数据库连接池为druid
     type: com.alibaba.druid.pool.DruidDataSource
     # 以下为druid数据源专有配置
