@@ -45,9 +45,9 @@ stop(){
         is_exist
         if [ $? -eq "0" ]; then
                 # 强制关机
-                #kill -9 ${PID}
-                # actuator提供的优雅关机:/actuator/shutdown,以下为自定义路径
-                curl -X POST http://127.0.0.1:40000/MyActuator/shutdown
+                kill -9 ${PID}
+                # actuator提供的优雅关机:/actuator/shutdown,以下为自定义路径.TODO 存在问题:优雅关机需要一定时间,导致 restart 的时候启动失败
+                #curl -X POST http://127.0.0.1:40000/MyActuator/shutdown
                 echo "${APP_NAME} process stop, PID=${PID}"
         else    
                 echo "There is not the process of ${APP_NAME}"
