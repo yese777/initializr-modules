@@ -32,6 +32,7 @@
 - knife4j替换 Swagger 默认界面，更符合国人习惯，`http://${host}:${port}/项目名/doc.html`；
 - 基于自定义注解`@Log` + Aop切面实现全方位日记记录；
 - 基于`SpringBoot 2.3`的优雅关机
+- shell 脚本快速部署项目
 - 
 
 
