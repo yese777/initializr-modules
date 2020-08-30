@@ -24,8 +24,8 @@ public class InitializrApplication {
         String path = env.getProperty("server.servlet.context-path");
         log.info("\n-----------------------------------------------------------------\n\t" +
                 "Application is running! Access URLs:\n\t" +
-                "Local: \t\t\thttp://localhost:" + port + path + "/\n\t" +
-                "External: \t\thttp://" + ip + ":" + port + path + "/\n\t" +
+                "Local: \t\thttp://localhost:" + port + path + "/\n\t" +
+                "External: \thttp://" + ip + ":" + port + path + "/\n\t" +
                 "Swagger文档: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
                 "-----------------------------------------------------------------");
     }

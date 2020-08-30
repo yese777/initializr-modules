@@ -2,7 +2,6 @@ package com.yese.common.utils.ip;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.yese.common.config.SystemConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
@@ -26,7 +25,7 @@ public class AddressUtils {
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
         }
-        if (SystemConfig.isAddressEnabled()) {
+        if (true) {
             try {
 
                 //GET请求

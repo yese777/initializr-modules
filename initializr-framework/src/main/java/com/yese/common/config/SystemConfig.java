@@ -33,13 +33,5 @@ public class SystemConfig {
      */
     private String copyrightYear;
 
-    /**
-     * 获取地址开关
-     */
-    private static boolean addressEnabled;
-
-    public static boolean isAddressEnabled() {
-        return addressEnabled;
-    }
 
 }

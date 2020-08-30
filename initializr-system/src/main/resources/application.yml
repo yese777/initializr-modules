@@ -8,8 +8,6 @@ system:
   version: 0.0.1
   # 版权年份
   copyrightYear: 2020
-  # 获取地址开关
-  addressEnabled: true
 
 server:
   # 开启优雅停机,默认IMMEDIATE是立即关机
