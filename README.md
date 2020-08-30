@@ -1,10 +1,87 @@
-# 项目简介
+# 简介
 
-用一两句话简单描述该项目所实现的业务功能；
+项目骨架（使用 idea 模块化搭建），用于快速构建中小型RESTful API项目。
 
 # 技术选型
 
-列出项目的技术栈，包括语言、框架和中间件等；
+| 框架         | 备注                          |
+| ------------ | ----------------------------- |
+| jdk8         |                               |
+| ide          | idea                          |
+| SpringBoot   | 基础框架，版本：2.2.9.RELEASE |
+| Maven        | 依赖管理                      |
+| EasyCode     | 代码生成插件                  |
+| MySQL        | 数据库，8.0 以上版本          |
+| Druid        | 数据库连接池                  |
+| MyBatis-Plus | mybatis 增强工具              |
+| Swagger      | 在线接口文档工具              |
+| Lombok       | 简化开发                      |
+| Fastjson     | json 工具                     |
+| hutool       | 工具包                        |
+
+
+
+# 特性
+
+- 使用 idea 插件 `EasyCode` 快速生成基于`mybatis-plus`的entity、mapper、mapperXML、service、serviceimpl、controller代码，实现实现单表业务零SQL；配置数据库全局逻辑删除字段，实现逻辑删除
+- 统一响应结果封装`R`
+- 全局异常处理`GlobalExceptionHandler`
+- `Hibernate Validator`实现参数校验，并在全局异常处理中封装异常信息
+- 自定义业务异常`BusinessException`
+- 集成Druid数据库连接池与监控`http://${host}:${port}/项目名/druid/`
+- knife4j替换 Swagger 默认界面，更符合国人习惯
+- 
+- 另有彩蛋，待你探索
+
+
+
+简单的接口签名认证
+
+常用基础方法抽象封装
+
+
+
+
+
+
+
+# 内置功能
+
+1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
+2. 部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
+3. 岗位管理：配置系统用户所属担任职务。
+4. 菜单管理：配置系统菜单，操作权限，按钮权限标识等。
+5. 角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。
+6. 字典管理：对系统中经常使用的一些较为固定的数据进行维护。
+7. 参数管理：对系统动态配置常用参数。
+8. 通知公告：系统通知公告信息发布维护。
+9. 操作日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+10. 登录日志：系统登录日志记录查询包含登录异常。
+11. 在线用户：当前系统中活跃用户状态监控。
+12. 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
+13. 代码生成：前后端代码的生成（java、html、xml、sql）支持CRUD下载 。
+14. 系统接口：根据业务代码自动生成相关的api接口文档。
+15. 服务监控：监视当前系统CPU、内存、磁盘、堆栈等相关信息。
+16. 在线构建器：拖动表单元素生成相应的HTML代码。
+17. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
+
+# 快速开始
+
+1. 克隆项目
+2. 对```test```包内的代码生成器```CodeGenerator```进行配置，主要是JDBC，因为要根据表名来生成代码
+3. 如果只是想根据上面的演示来亲自试试的话可以使用```test resources```目录下的```demo-user.sql```，否则忽略该步
+4. 输入表名，运行```CodeGenerator.main()```方法，生成基础代码（可能需要刷新项目目录才会出来）
+5. 根据业务在基础代码上进行扩展
+6. 对开发环境配置文件```application-dev.properties```进行配置，启动项目，Have Fun！
+
+# 开发建议
+
+- 表名，建议使用小写，多个单词使用下划线拼接
+- Model内成员变量建议与表字段数量对应，如需扩展成员变量（比如连表查询）建议创建DTO，否则需在扩展的成员变量上加```@Transient```注解，详情见[通用Mapper插件文档说明](https://mapperhelper.github.io/docs/2.use/)
+- 建议业务失败直接使用```ServiceException("message")```抛出，由统一异常处理器来封装业务失败的响应结果，比如```throw new ServiceException("该手机号已被注册")```，会直接被封装为```{"code":400,"message":"该手机号已被注册"}```返回，无需自己处理，尽情抛出
+- 需要工具类的话建议先从```apache-commons-*```和```guava```中找，实在没有再造轮子或引入类库，尽量精简项目
+- 开发规范建议遵循阿里巴巴Java开发手册（[最新版下载](https://github.com/alibaba/p3c))
+- 建议在公司内部使用[ShowDoc](https://github.com/star7th/showdoc)、[SpringFox-Swagger2](https://github.com/springfox/springfox) 、[RAP](https://github.com/thx/RAP)等开源项目来编写、管理API文档
 
 # 本地构建
 
@@ -57,29 +134,20 @@
 
 
 ```
-EasyCode模板快速生成CRUD代码
 主键自增
 配置mybatisplus的sql日志输出
 注册mybatisplus分页插件
 分页查询
-配置全局数据库逻辑删除字段
 别名包扫描
 指定Mapper.xml文件位置，自定义 mapper.xml
 更换 druid 数据源,开启监控页面
 统一响应结果封装及生成工具(ResponseControllerAdvice全局处理响应数据优化，https://juejin.im/post/6844904101940117511#heading-12，暂未处理)
-参数校验
-自定义业务异常
-全局异常处理
 多环境配置
-在线接口文档swagger
-swagger-bootstrap-ui
 日志文件输出
 跨域配置
 
 
-
 - 表名，建议使用小写，多个单词使用下划线拼接
-
 - 建议业务失败直接使用```ServiceException("message")```抛出，由统一异常处理器来封装业务失败的响应结果，比如```throw new ServiceException("该手机号已被注册")```，会直接被封装为```{"code":400,"message":"该手机号已被注册"}```返回，无需自己处理，尽情抛出
 
 
@@ -88,11 +156,6 @@ swagger-bootstrap-ui
 待完成:
 jwt
 spring session
-
-
-日志入库（操作账号，操作人 id，操作人名称，操作内容，操作结果，ip，请求路径url，开始时间，结束时间，方法执行时间，日志创建时间
-方法的入参，模块，功能，操作方法，方法描述）
-
 mybatisplus乐观锁
 ```
 
@@ -331,8 +394,6 @@ public class $!{tableName} {
 
 
 
-
-
 ###### extendController.java
 
 ```
@@ -377,8 +438,6 @@ public class $!{tableName} extends $!{tableInfo.name}Controller {
 
 
 
-
-
 ###### mapper.xml
 
 ```
@@ -410,15 +469,6 @@ $!callback.setSavePath($tool.append($modulePath, "/src/main/resources/mapper"))
 
 </mapper>
 ```
-
-
-
-
-
-
-
-
-
 
 
 
