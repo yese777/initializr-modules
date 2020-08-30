@@ -3,7 +3,7 @@
 # 应用名称:命令行输入的第一个参数
 APP_NAME=$1
  
-#日志文件路径
+# 日志文件路径
 LOG_NAME=./info.log
  
 # Shell Info 
@@ -44,7 +44,10 @@ start(){
 stop(){
         is_exist
         if [ $? -eq "0" ]; then
-                kill -9 ${PID}
+                # 强制关机
+                #kill -9 ${PID}
+                # actuator提供的优雅关机:/actuator/shutdown,以下为自定义路径
+                curl -X POST http://127.0.0.1:40000/MyActuator/shutdown
                 echo "${APP_NAME} process stop, PID=${PID}"
         else    
                 echo "There is not the process of ${APP_NAME}"

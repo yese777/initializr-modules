@@ -12,6 +12,8 @@ system:
   addressEnabled: true
 
 server:
+  # 开启优雅停机,默认IMMEDIATE是立即关机
+  shutdown: graceful
   servlet:
     # 项目路径
     context-path: /initializr
@@ -31,6 +33,9 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  lifecycle:
+    # 缓冲时间,默认时间为30S,意味着最多等待30S，超时无论线程任务是否执行完毕都会停机处理，一定要合理合理设置。
+    timeout-per-shutdown-phase: 30s
 
 mybatis-plus:
   # 指定Mapper.xml文件位置,可以是数组.默认配置为'- classpath*:/mapper/**/*.xml'
@@ -50,3 +55,21 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 0
+
+# actuator相关
+management:
+  endpoint:
+    shutdown:
+      # 启用shutdown
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      # 自定义管理端点的前缀(保证安全),http://127.0.0.1:40000/MyActuator/shutdown
+      base-path: /MyActuator
+  server:
+    # 自定义端口
+    port: 40000
+    # 不允许远程管理连接(不允许外部调用保证安全)
+    address: 127.0.0.1
