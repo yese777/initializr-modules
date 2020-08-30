@@ -30,7 +30,7 @@
 - 自定义业务异常`BusinessException`
 - 集成Druid数据库连接池与监控`http://${host}:${port}/项目名/druid/`
 - knife4j替换 Swagger 默认界面，更符合国人习惯
-- 
+- 基于自定义注解`@Log` + Aop切面实现全方位日记记录
 - 另有彩蛋，待你探索
 
 
