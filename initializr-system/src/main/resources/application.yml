@@ -35,6 +35,14 @@ spring:
     # 缓冲时间,默认时间为30S,意味着最多等待30S，超时无论线程任务是否执行完毕都会停机处理，一定要合理合理设置。
     timeout-per-shutdown-phase: 30s
 
+  redis:
+    # 配置Redis的主机地址
+    host: 47.100.230.188
+    # 端口
+    port: 6379
+    # 默认无密码
+    password:
+
 mybatis-plus:
   # 指定Mapper.xml文件位置,可以是数组.默认配置为'- classpath*:/mapper/**/*.xml'
   mapperLocations:
