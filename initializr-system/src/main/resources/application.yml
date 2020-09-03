@@ -43,6 +43,19 @@ spring:
     # 默认无密码
     password:
 
+  # security相关
+  security:
+    user:
+      name: admin
+      password: 123
+  session:
+    store-type: redis
+    # session过期时间,单位为秒,默认1800
+    timeout: 600
+    redis:
+      # 键的前缀,默认为spring:session
+      namespace: yese
+
 mybatis-plus:
   # 指定Mapper.xml文件位置,可以是数组.默认配置为'- classpath*:/mapper/**/*.xml'
   mapperLocations:
