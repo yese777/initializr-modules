@@ -1,11 +1,10 @@
 package com.yese.controller;
-
-
 import com.baomidou.mybatisplus.extension.api.R;
 import com.yese.common.annotation.Log;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,4 +59,18 @@ public class TestController {
         // 返回
         return R.ok(result);
     }
+
+    /**
+     * 得到当前用户信息
+     *
+     * @author 张庆福
+     * @date 2020/09/04
+     * @param authentication 身份验证
+     */
+    @GetMapping("/userInfo")
+    public R getCurrentUserInfo(Authentication authentication) {
+        return R.ok(authentication.getPrincipal());
+    }
+
+
 }

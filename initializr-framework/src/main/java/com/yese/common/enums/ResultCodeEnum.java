@@ -45,6 +45,7 @@ public enum ResultCodeEnum implements IErrorCode {
     USER_DISABLED(2005, "账户被禁用，请联系管理员!"),
     USER_BAD_CREDENTIALS(2006, "用户名或者密码输入错误，请重新输入!"),
     USER_NOT_LOGIN(2007, "尚未登录，请先登录!"),
+    VERIFY_CODE_ERROR(2008, "验证码不正确"),
 
     // 3000～3999区间表示接口错误
     API_ERROR(3000, "接口错误"),
