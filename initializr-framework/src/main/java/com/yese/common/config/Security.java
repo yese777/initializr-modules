@@ -44,6 +44,18 @@ public class Security extends WebSecurityConfigurerAdapter {
     // SpringSessionBackedSessionRegistry sessionRegistry() {
     //     return new SpringSessionBackedSessionRegistry(sessionRepository);
     // }
+    // @Bean
+    // CorsConfigurationSource corsConfigurationSource() {
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     CorsConfiguration configuration = new CorsConfiguration();
+    //     configuration.setAllowCredentials(true);
+    //     configuration.setAllowedOrigins(Arrays.asList("*"));
+    //     configuration.setAllowedMethods(Arrays.asList("*"));
+    //     configuration.setAllowedHeaders(Arrays.asList("*"));
+    //     configuration.setMaxAge(Duration.ofHours(1));
+    //     source.registerCorsConfiguration("/**",configuration);
+    //     return source;
+    // }
 
     @Bean
     LoginFilter loginFilter() throws Exception {
@@ -89,8 +101,19 @@ public class Security extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .anyRequest().authenticated().and()
-                .logout().logoutUrl("/auth/logout")
+                .antMatchers("/profile/**").anonymous()
+                .antMatchers("/common/download**").anonymous()
+                .antMatchers("/common/download/resource**").anonymous()
+                .antMatchers("/swagger-ui.html").anonymous()
+                .antMatchers("/swagger-resources/**").anonymous()
+                .antMatchers("/webjars/**").anonymous()
+                .antMatchers("/*/api-docs").anonymous()
+                .antMatchers("/doc.html").anonymous()
+                .antMatchers("/druid/**").anonymous()
+                .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutUrl("/auth/logout")
                 // 注销
                 .logoutSuccessHandler((request, response, authentication) -> {
                     response.setContentType("application/json;charset=utf-8");
@@ -100,7 +123,9 @@ public class Security extends WebSecurityConfigurerAdapter {
                     out.write(new ObjectMapper().writeValueAsString(r));
                     out.flush();
                     out.close();
-                }).permitAll().and()
+                })
+                .permitAll()
+                .and()
                 .csrf().disable()
                 .exceptionHandling()
                 // 未登录,未认证
@@ -113,13 +138,20 @@ public class Security extends WebSecurityConfigurerAdapter {
                     out.flush();
                     out.close();
                 })
-        ;
-        // .and()
-        // .sessionManagement()
-        // .maximumSessions(1)
-        // .maxSessionsPreventsLogin(true)
-        // .sessionRegistry(sessionRegistry());
+                // .and()
+                // .cors()
+                // .configurationSource(corsConfigurationSource())
 
+                // .and()
+                // .sessionManagement()
+                // .maximumSessions(1)
+                // .maxSessionsPreventsLogin(true)
+                // .sessionRegistry(sessionRegistry());
+                // .and()
+                // .sessionManagement()
+                // .maximumSessions(1)
+                // .maxSessionsPreventsLogin(true)
+        ;
         httpSecurity.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
