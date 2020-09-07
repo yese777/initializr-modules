@@ -1,4 +1,5 @@
 package com.yese.controller;
+
 import com.baomidou.mybatisplus.extension.api.R;
 import com.yese.common.annotation.Log;
 import io.swagger.annotations.Api;
@@ -63,8 +64,6 @@ public class TestController {
     /**
      * 得到当前用户信息
      *
-     * @author 张庆福
-     * @date 2020/09/04
      * @param authentication 身份验证
      */
     @GetMapping("/userInfo")
@@ -72,5 +71,8 @@ public class TestController {
         return R.ok(authentication.getPrincipal());
     }
 
-
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
 }

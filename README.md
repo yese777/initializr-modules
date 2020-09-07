@@ -4,20 +4,25 @@
 
 # 技术选型
 
-| 框架         | 备注                          |
-| ------------ | ----------------------------- |
-| java         | jdk8                          |
-| ide          | idea                          |
-| SpringBoot   | 基础框架，版本：2.3.3.RELEASE |
-| Maven        | 依赖管理                      |
-| EasyCode     | 代码生成插件                  |
-| MySQL        | 数据库，8.0 以上版本          |
-| Druid        | 数据库连接池                  |
-| MyBatis-Plus | mybatis 增强工具              |
-| Swagger      | 在线接口文档工具              |
-| Lombok       | 简化开发                      |
-| Fastjson     | json 工具                     |
-| hutool       | 工具包                        |
+| 框架           | 备注                          |
+| -------------- | ----------------------------- |
+| java           | jdk8                          |
+| ide            | idea                          |
+| SpringBoot     | 基础框架，版本：2.3.3.RELEASE |
+| Maven          | 依赖管理                      |
+| EasyCode       | 代码生成插件                  |
+| MySQL          | 数据库，8.0 以上版本          |
+| Druid          | 数据库连接池                  |
+| MyBatis-Plus   | mybatis 增强工具              |
+| Swagger        | 在线接口文档工具              |
+| Lombok         | 简化开发                      |
+| Fastjson       | json 工具                     |
+| hutool         | 工具包                        |
+| Redis          | 缓存，同时作为 session        |
+| SpringSession  | 简化 session 的使用           |
+| SpringSecurity | 安全框架                      |
+| actuator       | 监控及优雅关机                |
+| validation     | 参数校验                      |
 
 
 
@@ -26,14 +31,16 @@
 - 使用 idea 插件 `EasyCode` 快速生成基于`mybatis-plus`的entity、mapper、mapperXML、service、serviceimpl、controller代码，实现实现单表业务零SQL；配置数据库全局逻辑删除字段，实现逻辑删除；
 - 统一响应结果封装`R`；
 - 全局异常处理`GlobalExceptionHandler`；
-- `Hibernate Validator`实现参数校验，在全局异常处理中封装异常信息，统一定义参数校验的提示信息；
+- `Hibernate Validator`实现参数校验，在全局异常处理中封装提示信息，在`ValidationMessages.properties`中统一定义提示信息；
 - 自定义业务异常`BusinessException`；
-- 集成Druid数据库连接池与监控，`http://${host}:${port}/项目名/druid/`；
-- knife4j替换 Swagger 默认界面，更符合国人习惯，`http://${host}:${port}/项目名/doc.html`；
+- 集成Druid数据库连接池与监控，页面地址：`http://${host}:${port}/项目名/druid/`；
+- knife4j替换 Swagger 默认界面，更符合国人习惯，页面地址：`http://${host}:${port}/项目名/doc.html`；
 - 基于自定义注解`@Log` + Aop切面实现全方位日记记录；
 - 基于`SpringBoot 2.3`的优雅关机
 - shell 脚本快速部署项目
-- 
+- redis
+- SpringSecurity
+- SpringSession
 
 
 
