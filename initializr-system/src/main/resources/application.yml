@@ -67,9 +67,11 @@ mybatis-plus:
   typeAliasesPackage: com.yese.entity
   global-config:
     db-config:
+      # 全局主键类型
+      id-type: AUTO
       # 配置逻辑删除相关
-      # 全局逻辑删除的实体字段名(根据实际情况配置)
-      logic-delete-field: deleted
+      # 全局逻辑删除的实体属性名(根据实际情况配置)
+      logic-delete-field: delFlag
       # 逻辑已删除值(默认为 1)
       logic-delete-value: 1
       # 逻辑未删除值(默认为 0)
