@@ -9,14 +9,13 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 
 /**
- * TODO
+ * 配置使用Spring Session时的序列化策略
  *
  * @author 张庆福
  * @date 2020/9/3
  */
 @Configuration
-public class HttpSessionConfig implements BeanClassLoaderAware {
-
+public class SessionConfig implements BeanClassLoaderAware {
 
     private ClassLoader loader;
 
@@ -25,18 +24,11 @@ public class HttpSessionConfig implements BeanClassLoaderAware {
         return new GenericJackson2JsonRedisSerializer(objectMapper());
     }
 
-    /**
-     * Customized {@link ObjectMapper} to add mix-in for class that doesn't have default
-     * constructors
-     *
-     * @return the {@link ObjectMapper} to use
-     */
     private ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModules(SecurityJackson2Modules.getModules(this.loader));
         return mapper;
     }
-
 
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {

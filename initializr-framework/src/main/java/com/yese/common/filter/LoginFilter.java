@@ -17,6 +17,7 @@ import java.util.Map;
 
 /**
  * 自定义登录拦截器
+ * 添加了对验证码的支持
  *
  * @author 张庆福
  * @date 2020/9/2
